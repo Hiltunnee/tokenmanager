@@ -12,15 +12,8 @@ app.use(express.json());
 app.use("/api/colors", colorsRouter);
 app.use("/api/tokens", tokensRouter);
 
-app.get("/api/hello", (req, res) => {
-  res.json({ message: "Hello from back!" });
-});
+const PORT = process.env.PORT || 5000;
 
-app.get("/api/test", async (req, res) => {
-  const result = await pool.query("SELECT NOW()");
-  res.json(result.rows[0]);
-});
-
-app.listen(5000, () => {
+app.listen(PORT, () => {
   console.log("Server running on port 5000");
 });
