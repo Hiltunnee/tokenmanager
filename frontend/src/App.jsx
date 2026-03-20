@@ -19,15 +19,17 @@ function App() {
   const [open, setOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState('Inventory');
 
+  const apiBase = import.meta.env.VITE_API_URL || "";
+
   useEffect(() => {
-    fetch("http://localhost:5000/api/colors")
+    fetch(`${apiBase}/api/colors`)
       .then(res => res.json())
       .then(data => setColors(data));
 
-    fetch("http://localhost:5000/api/tokens")
+    fetch(`${apiBase}/api/tokens`)
       .then(res => res.json())
       .then(data => setTokens(data));
-  }, []);
+  }, [apiBase]);
 
   useEffect(() => {console.log(colors)}, [colors]);
   useEffect(() => {console.log(tokens)}, [tokens]);

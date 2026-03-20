@@ -14,6 +14,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Box from "@mui/material/Box";
 
 export default function Inventory({colors, setColors, tokens, setTokens}) {
+    const apiBase = import.meta.env.VITE_API_URL || "";
     const [updatedTokens, setUpdatedTokens] = useState([...tokens]);
     const [unsavedChanges, setUnsavedChanges] = useState(false);
 
@@ -62,7 +63,7 @@ export default function Inventory({colors, setColors, tokens, setTokens}) {
     const handleAddToken = (token) => {
         setDialogOpenAdd(false);
 
-        fetch("http://localhost:5000/api/tokens", {
+        fetch(`${apiBase}/api/tokens`, {
             method: "POST",
             body: JSON.stringify({...token, amount: parseInt(token.amount)}),
             headers: {
@@ -82,7 +83,7 @@ export default function Inventory({colors, setColors, tokens, setTokens}) {
     };
 
     const handleDeleteToken = (token) => {
-        fetch(`http://localhost:5000/api/tokens/${token.id}`, {
+        fetch(`${apiBase}/api/tokens/${token.id}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json"
@@ -103,7 +104,7 @@ export default function Inventory({colors, setColors, tokens, setTokens}) {
             return JSON.stringify(original) !== JSON.stringify(updated);
         });
 
-        fetch("http://localhost:5000/api/tokens", {
+        fetch(`${apiBase}/api/tokens`, {
             method: "PUT",
             body: JSON.stringify(tokensToUpdate),
             headers: {
