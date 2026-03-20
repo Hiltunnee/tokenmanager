@@ -1,0 +1,29 @@
+GET http://localhost:5000/api/tokens
+
+### Update token with id 1
+PUT http://localhost:5000/api/tokens
+Content-Type: application/json
+
+[
+    {
+        "id": 1,
+        "text": "VIGILANCE",
+        "base_color": "Black",
+        "border_color": "Brown",
+        "amount": 6
+    }
+]
+
+### Delete token with id ?
+DELETE http://localhost:5000/api/tokens/5
+
+### Add new token
+POST http://localhost:5000/api/tokens
+Content-Type: application/json
+
+{
+    "text": "NEW TOKEN",
+    "base_color": "Purple",
+    "border_color": "White",
+    "amount": 3
+}
